@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <%-  include('./partials/head.ejs')%>
+  <body>
+    <!-- Sidebar -->
+    <%-  include('./partials/sidebar.ejs')%>
+    <div class="content-page">
+        <h1>Title: <%= book.title %></h1>
+            <p>
+                <b>Author:</b>
+                <a href=<%= book.author.url %>>
+                    <%= book.author.name %>
+                </a>
+            </p>
+
+            <p>
+                <b>Summary:</b> 
+                <%= book.summary %>
+            </p>
+
+            <p>
+                <b>ISBN:</b> 
+                <%= book.isbn %></p>
+            <b>
+                Genre:
+                <% for( let index = 0; index < book.genre.length; index++ ) { %>
+                    <a href=<%= book.genre[index].url %>><%= book.genre[index].name %></a>
+                    <% if (index < book.genre.length - 1) { %>
+                        ,
+                    <% } %>
+                <% } %>
+            </b>
+        <% if (book_instances.length > 0) { %>
+            <div style='margin-bottom:20px;margin-top:20px'>
+                <b>Delete the following instances before attempting to delete this book.</b>
+            </div>
+            
+            <div style='margin-left:20px;margin-top:20px'>
+                
+                <% for( let index = 0; index < book_instances.length; index++ ) { %>
+                    <% if (book_instances[index].status == 'Available') { %>
+                        <p class="text-success">Available</p>
+                    <% } else if(book_instances[index].status == 'Maintenance') {%>
+                        <p class="text-danger">Maintenance</p>
+                    <% } else { %>
+                         <p class="text-warning"><%= book_instances[index].status %></p>
+                    <% } %>
+
+                    <p>
+                        <b>Imprint: </b><%= book_instances[index].imprint %>
+                    </p>
+
+                    <% if (book_instances[index] != 'Available') { %>
+                        <p>
+                            <b>Due back: </b>
+                            <%= book_instances[index].due_back_formatted %>
+                        </p>
+                    <% } %>
+
+                    <p>
+                        <b>Id:</b>
+                        <a href=<%= book_instances[index].url %>>
+                            <%= book_instances[index]._id %>
+                        </a>
+                    </p>
+                    
+                <% } %>
+            </div>
+        <% } else {%>
+            <p>Do you really  want to delete this Book?</p>
+            <form method="POST" action="">
+                <div class="form-group">
+                  <input class="form-control" id="bookid" type="hidden" name="bookid" required="true" value="<%= book._id %>"/>
+                </div>
+                <button class="btn btn-primary" type="submit">Delete</button>
+              </form>
+        <% } %>
+    </div>
+  </body>
+</html>

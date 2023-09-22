@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <%-  include('./partials/head.ejs')%>
+  <body>
+    <!-- Sidebar -->
+    <%-  include('./partials/sidebar.ejs')%>
+    <div class="content-page">
+        <h1><%= title %></h1>
+        <ul>
+        <% if(genre_list) { %>
+            <% genre_list.forEach(genre => { %>
+                <li>
+                    <a href=<%= genre.url %>>
+                        <%= genre.name %>
+                    </a>
+                </li>
+                <% }) %>
+        <% } else { %>
+            <li>There are no genres.</li>
+        <% } %>
+        </ul>
+    </div>
+  </body>
+</html>

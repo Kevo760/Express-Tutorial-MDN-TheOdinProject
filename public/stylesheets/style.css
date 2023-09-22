@@ -1,0 +1,66 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+a {
+  color: #00B7FF;
+  text-decoration: none;
+}
+
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  
+  width: 200px;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+}
+
+.content-page {
+  width: 100%;
+}
+
+.content-page ul {
+  padding-left: 16px;
+}
+
+.black-text {
+  color: black;
+}
+
+.book-detail-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.book-detail-bottom {
+  margin-top: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+form button {
+  width: 100px;
+}
+
+label {
+  padding-bottom: 4px;
+}

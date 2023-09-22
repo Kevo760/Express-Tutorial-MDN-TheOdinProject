@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <%-  include('./partials/head.ejs')%>
+  <body>
+    <!-- Sidebar -->
+    <%-  include('./partials/sidebar.ejs')%>
+    <div class="content-page">
+        <div class="book-detail-top">
+            <h1>Title: <%= book.title %></h1>
+            <p>
+                <b>Author:</b>
+                <a href=<%= book.author.url %>>
+                    <%= book.author.name %>
+                </a>
+            </p>
+
+            <p>
+                <b>Summary:</b> 
+                <%= book.summary %>
+            </p>
+
+            <p>
+                <b>ISBN:</b> 
+                <%= book.isbn %></p>
+            <b>
+                Genre:
+                <% for( let index = 0; index < book.genre.length; index++ ) { %>
+                    <a href=<%= book.genre[index].url %>><%= book.genre[index].name %></a>
+                    <% if (index < book.genre.length - 1) { %>
+                        ,
+                    <% } %>
+                <% } %>
+            </b>
+        </div>
+        <div class="book-detail-bottom">
+            <h4>Copies</h4>
+            <% if (book_instances) { %>
+                <% for( let index = 0; index < book_instances.length; index++ ) { %>
+                    <% if (book_instances[index].status == 'Available') { %>
+                        <p class="text-success">Available</p>
+                    <% } else if(book_instances[index].status == 'Maintenance') {%>
+                        <p class="text-danger">Maintenance</p>
+                    <% } else { %>
+                         <p class="text-warning"><%= book_instances[index].status %></p>
+                    <% } %>
+
+                    <p>
+                        <b>Imprint: </b><%= book_instances[index].imprint %>
+                    </p>
+
+                    <% if (book_instances[index] != 'Available') { %>
+                        <p>
+                            <b>Due back: </b>
+                            <%= book_instances[index].due_back_formatted %>
+                        </p>
+                    <% } %>
+
+                    <p>
+                        <b>Id:</b>
+                        <a href=<%= book_instances[index].url %>>
+                            <%= book_instances[index]._id %>
+                        </a>
+                    </p>
+                    
+                <% } %>
+                
+                <hr />
+                    <p>
+                        <a href="<%= book.url+'/delete' %>">Delete book</a>
+                        |
+                        <a href="<%= book.url+'/update' %>">Update book</a>
+                    </p>
+            <% } else { %>
+                <p>There are no copies of this book in the library</p>
+            <% } %>
+        </div>
+    </div>
+  </body>
+</html>

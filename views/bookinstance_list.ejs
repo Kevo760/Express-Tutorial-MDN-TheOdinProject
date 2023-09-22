@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <%-  include('./partials/head.ejs')%>
+  <body>
+    <!-- Sidebar -->
+    <%-  include('./partials/sidebar.ejs')%>
+    <div class="content-page">
+        <h1><%= title %></h1>
+        <ul>
+            <% if (bookinstance_list) { %>
+                <% bookinstance_list.forEach(val => { %>
+                    <li>
+                       <a href=<%= val.url %>>
+                           <%= val.book.title %> 
+                           : 
+                           <span class="black-text"><%= val.imprint %> - </span>
+                           <% if(val.status == 'Available') { %>
+                               <span class="text-success">Available</span>
+                           <% } else if(val.status == 'Maintenance'){ %>
+                               <span class="text-danger">Maintenance</span>
+                           <% } else { %>
+                            <span class="text-warning">Loaned</span>
+                           <% } %>
+       
+                           <% if (val.status != "Available") { %>
+                               <span class="text-black">Due: <%= val.due_back_formatted %></span>
+                           <% } %>
+                       </a>
+                    </li>
+                   <% }) %>
+            <% } else { %>
+                <li>There are no book copies in this library</li>
+            <% } %>
+        </ul>
+    </div>
+  </body>
+</html>

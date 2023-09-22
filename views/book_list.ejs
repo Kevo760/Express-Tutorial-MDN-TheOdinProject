@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <%-  include('./partials/head.ejs')%>
+  <body>
+    <!-- Sidebar -->
+    <%-  include('./partials/sidebar.ejs')%>
+    <div class="content-page">
+        <h1><%= title %></h1>
+        <ul>
+        <% if(book_list) { %>
+            <% book_list.forEach(book => { %>
+                <li><a href=<%= book.url %>><%= book.title %> <span class="black-text">(<%= book.author.name %>)</span></a></li>
+                <% }) %>
+        <% } else { %>
+            <li>There are no books</li>
+        <% } %>
+        </ul>
+    </div>
+  </body>
+</html>

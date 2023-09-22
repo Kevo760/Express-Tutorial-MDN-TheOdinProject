@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <%-  include('./partials/head.ejs')%>
+  <body>
+    <!-- Sidebar -->
+    <%-  include('./partials/sidebar.ejs')%>
+    <div class="content-page">
+        <h1><%= title %></h1>
+        <ul>
+        <% if(author_list) { %>
+            <% author_list.forEach(author => { %>
+                <li>
+                    <a href=<%= author.url %>>
+                        <%= author.name %>
+                         | 
+                        <span class="black-text">
+                            (<%= author.date_of_birth_formatted %> - <%= author.date_of_death_formatted %>)
+                        </span>
+                    </a>
+                </li>
+                <% }) %>
+        <% } else { %>
+            <li>There are no authors.</li>
+        <% } %>
+        </ul>
+    </div>
+  </body>
+</html>

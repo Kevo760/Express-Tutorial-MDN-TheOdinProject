@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <%-  include('./partials/head.ejs')%>
+  <body>
+    <!-- Sidebar -->
+    <%-  include('./partials/sidebar.ejs')%>
+    <div class="content-page">
+        <h1><%= title %></h1>
+        <form method="POST" action="">
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input class="form-control" 
+                    id="first_name" type="text" 
+                    placeholder="First name" 
+                    name="first_name" 
+                    required="true" 
+                    autocomplete="off"
+                    value="<%= typeof author === 'undefined' ? '' : author.first_name %>" 
+                />
+            </div>
+            
+            <div class="form-group">
+                <label for="family_name">Family Name:</label>
+                <input class="form-control" 
+                    id="family_name" 
+                    type="text" 
+                    placeholder="Family name" 
+                    name="family_name" 
+                    required="true"
+                    autocomplete="off"
+                    value="<%= typeof author === 'undefined' ? '' : author.family_name %>" 
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="date_of_birth">Date of birth:</label>
+                <input class="form-control" 
+                    id="date_of_birth" 
+                    type="date" 
+                    name="date_of_birth"
+                    placeholder='dd/mm/yyyy'
+                    value="<%= typeof author === 'undefined' ? '' : author.date_of_birth_yyyymmdd%>" 
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="date_of_death">Date of death:</label>
+                <input class="form-control" 
+                    id="date_of_death" 
+                    type="date" 
+                    name="date_of_death"
+                    placeholder='dd/mm/yyyy'
+                    value="<%= typeof author === 'undefined' ? '' : author.date_of_death_yyyymmdd %>" 
+                />
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+
+            <% if(typeof errors != 'undefined') { %>
+                <ul>
+                    <% errors.forEach(err => { %>
+                     <li>
+                        <%= err.msg %>
+                     </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </form>
+
+      
+    </div>
+  </body>
+</html>

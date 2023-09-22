@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <%-  include('./partials/head.ejs')%>
+  <body>
+    <!-- Sidebar -->
+    <%-  include('./partials/sidebar.ejs')%>
+    <div class="content-page">
+        <h1><%= genre.name %></h1>
+
+        <div style='margin-left:20px;margin-top:20px'>
+            <h4>Books</h4>
+
+            <dl>
+                <% if(genre_books) { %>
+                    <% genre_books.forEach(book => { %>
+                        <dt>
+                            <a href=<%= book.url %>>
+                                <%= book.title %>
+                            </a>
+                        </dt>
+
+                        <dd>
+                            <%= book.summary %>
+                        </dd>
+                        <% }) %>
+                <% } else { %>
+                    <p>This genre has no books.</p>
+                <% } %>
+                </dl>
+
+                <hr />
+                    <p>
+                        <a href="<%= genre.url+'/delete' %>">Delete genre</a>
+                        |
+                        <a href="<%= genre.url+'/update' %>">Update genre</a>
+                    </p>
+        </div>
+        
+    </div>
+  </body>
+</html>
