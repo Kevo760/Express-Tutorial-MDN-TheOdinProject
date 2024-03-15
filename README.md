@@ -21,7 +21,7 @@ Follow through ExpressJS tutorial via MDN documents to create a full functioning
 
 ### Links
 
-- Solution URL: [https://github.com/TheLegend760/Express-Tutorial-MDN-TheOdinProject]
+- Solution URL: [https://github.com/Kevo760/Express-Tutorial-MDN-TheOdinProject]
 - Live Site URL: [https://express-tutorial-ftwe.onrender.com/]
 
 ## My process
